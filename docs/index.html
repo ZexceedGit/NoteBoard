@@ -8,7 +8,7 @@
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
-
+ 
         * {
             margin:0;
             padding:0;
@@ -29,6 +29,7 @@
         .navbar {
             height:100px;
             display:flex;
+            justify-content: space-between;
             padding:0 20px;
             align-items: center;
             background-color: #d4a574;
@@ -512,12 +513,15 @@
         .createModal .modal-content .modal-body .preview{
             margin-top:30px;
             display:none;
+            position: relative;
         }
         .createModal .modal-content .modal-body .preview .preview-box {
             width:100%;
             background-color: #fff085;
-            height:60px;
+            min-height:60px;
             border-radius:5px;
+            height:auto;
+            position:relative;
             padding:10px 30px;
             border:3px solid #fdc700;
             transform:rotate(-1deg);
@@ -639,11 +643,46 @@
         .note-toaster p {
            margin-left:40px;
         }
+         .navbar .left-side {
+            display:flex;
+            align-items: center;
+            gap:15px;
+        }
+        .navbar .left-side .circle {
+            height:60px;
+            width:60px;
+            border-radius:50%;
+            background-color: #e7000b;
+            display:grid;
+            place-items:center;
+            border:3px solid #a00812;
+        }
+        .navbar .left-side .circle i {
+            color:white;
+            font-size:1.5rem;
+            transform: rotate(15deg);
+        }
+        .navbar .left-side .text h1{
+            color: #7b3306;
+            font-size:1.6rem;
+        }
+        .navbar .left-side .text p {
+            color:#bb4d00;
+        }
    
     </style>
 </head>
 <body>
     <div class="navbar">
+          <div class="left-side">
+        <div class="circle">
+            <i class='bx bx-pin'></i>
+        </div>
+        <div class="text">
+            <h1>Design Principles</h1>
+            <p>The philosophy behind Public Wall</p>
+        </div>
+        </div>
         <div class="buttons">
             <button id="add"><i class='bx bx-plus'></i>Add Notes</button>
             <button id="design"><i class='bx bx-palette'></i>Design</button>
@@ -771,6 +810,27 @@
                 </div>
             </div>
 
+             <div class="card orange">
+            <div class="pins">
+             <div class="pin">
+                <div class="pin-head"></div>
+                <div class="pin-stem"></div>
+                </div>
+              </div>
+<h1>📝 This note doesn’t mean much, and that’s okay — even small thoughts and ideas have value</h1>
+                <span>4D AGO</span>
+                <div class="card-clickables">
+                    <div class="heart-button btn">
+                        <i class='bx bx-heart'></i>
+                        <h2>0</h2>
+                    </div>
+                    <div class="comment-button btn">
+                        <i class='bx bx-message-rounded-dots'></i>
+                        <h2>0</h2>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="rule">
@@ -875,7 +935,14 @@
 
                 <div class="preview">
                     <h1>Preview</h1>
-                    <div class="preview-box"></div>
+                    <div class="preview-box">
+                    <div class="pins">
+                    <div class="pin">
+                        <div class="pin-head"></div>
+                        <div class="pin-stem"></div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
 
                 <div class="bottom">
@@ -1109,9 +1176,11 @@
         addBtn.addEventListener("click", (e) => {
             modal.style.display = "flex";
         })
+        document.getElementById("design").addEventListener("click", () => {
+            window.open("design.html", "_self");
+        })
       
       
     </script>
 </body>
 </html>
-
