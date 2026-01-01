@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Design</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+        * {
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: "Patrick Hand", "sans-serif";
+        }
+          body {
+            overflow-x:hidden;
+            overflow-y:scroll;
+        }
+        .navbar {
+            height:100px;
+            display:flex;
+            padding:0 20px;
+            align-items: center;
+            background-color: #d4a574;
+            border-bottom:4px solid #803805;
+            justify-content: space-between;
+        }
+        .navbar .left-side {
+            display:flex;
+            align-items: center;
+            gap:15px;
+        }
+        .navbar .left-side .circle {
+            height:60px;
+            width:60px;
+            border-radius:50%;
+            background-color: #e7000b;
+            display:grid;
+            place-items:center;
+            border:3px solid #a00812;
+        }
+        .navbar .left-side .circle i {
+            color:white;
+            font-size:1.5rem;
+            transform: rotate(15deg);
+        }
+        .navbar .left-side .text h1{
+            color: #7b3306;
+            font-size:1.6rem;
+        }
+        .navbar .left-side .text p {
+            color:#bb4d00;
+        }
+        .navbar .right-side button {
+            width:150px;
+            display:flex;
+            padding:10px;
+            font-size:1.1rem;
+            color:#a73c00;
+            font-weight: bold;
+            border:3px solid #a73c00;
+            border-radius:10px;
+            cursor:pointer;
+            justify-content: center;
+            align-items: center;
+            transition:transform 300ms ease;
+        }
+        .navbar .right-side button:hover {
+            transform:scale(1.03);
+            background-color:#edc8a0;
+        }
+        .navbar .right-side button i {
+            font-size:1.4rem;
+            margin-right:5px;
+        }
+        .main {
+            height:calc(auto - 100px);
+            background: url("../images/paper2.jpg") center / cover no-repeat;
+            padding:30px;
+        }
+        .main .about {
+            background-color:  #f6f2eb;
+            padding:30px;
+            height:380px;
+            border-radius:10px;
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            border:2px solid #f5cc3e;
+        }
+        .main .about h1 {
+            text-align: center;
+            color: #7d3a11;
+            padding:10px;
+            font-size:2.8rem;
+        }
+        .main .about .paragraph {
+            display:flex;
+            flex-direction: column;
+            gap:20px;
+            max-width:800px;
+            color: #c3936c;
+            font-size:1.5rem;
+        }
+        .cards {
+            display: grid;
+            margin-top:50px;
+            gap:10px;
+            place-items: center;
+            row-gap:40px;
+            grid-template-columns:repeat(3,1fr);
+        }
+        .cards .card {
+            width:380px;
+            height:300px;
+            color:#202939;
+            padding:20px 20px;
+            position:relative;
+            border-radius:5px;
+        }
+        .cards .card h1 {
+            margin-bottom:20px;
+        }
+        .cards .card h2 {
+            font-weight:lighter;
+        }
+        .cards .card .description {
+            display:grid;
+            row-gap:20px;
+        }
+        .cards .card:nth-child(1){
+            background-color: #fbec84;
+            border:3px solid #e9bc2b;
+            transform: rotate(-2deg);
+        }
+         .cards .card:nth-child(2){
+            background-color:  #bedafe;
+            border:3px solid  #6ca7e9;
+            transform: rotate(1deg);
+        }
+         .cards .card:nth-child(3){
+            background-color:  #b7f3cb;
+            border:3px solid #58c679;
+            transform: rotate(-1deg);
+        }
+         .cards .card:nth-child(4){
+            background-color: #f7cbe3;
+            border:3px solid #ee6fab;
+            transform: rotate(2deg);
+        }
+         .cards .card:nth-child(5){
+            background-color:  #e3d0f7;
+            border:3px solid #d2a0ff;
+            transform: rotate(-2deg);
+        }
+         .cards .card:nth-child(6){
+            background-color:  #fad6ae;
+            border:3px solid #f7911e;
+            transform: rotate(1deg);
+        }
+          .pins {
+            position:absolute;
+            top:35px;
+            left:25%;
+            transform:translate(50%,-50%);
+        }
+        .pin {
+        position: relative;
+        width: 80px;
+        height: 120px;
+        }
+
+        .pin-head {
+            width: 30px;
+            height: 30px;
+            background: #e53935;
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto;
+                /* box-shadow: inset -4px -6px 0 rgba(0,0,0,0.15); */
+        }
+
+        .pin-head::after,.pin-head2::after {
+            content: "";
+            position: absolute;
+            top: 7px;
+            left: 7px;
+            width: 12px;
+            height: 12px;
+            background: rgba(255,255,255,0.35);
+            border-radius: 50%;
+        }
+
+        .pin-stem {
+            width: 10px;
+            height: 20px;
+            background: #9e9e9e;
+            margin: -5px auto 0;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+     <div class="navbar">
+        <div class="left-side">
+        <div class="circle">
+            <i class='bx bx-pin'></i>
+        </div>
+        <div class="text">
+            <h1>Design Principles</h1>
+            <p>The philosophy behind Public Wall</p>
+        </div>
+        </div>
+        <div class="right-side">
+            <button id="redirect"><i class='bx bx-left-arrow-alt' ></i><p>Back to Wall</p></button>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="about">
+            <h1>Our Design Philosophy</h1>
+            <div class="paragraph">
+            <p>Public Wall was designed to bring the tactile, personal experience of physical sticky notes into the digital realm. We believe that digital spaces can be warm, inviting, and personal - not just functional.</p>
+            <p>Each design decision was made to create a space that feels both familiar and delightful, where sharing thoughts and connecting with others feels as natural as pinning a note to a real cork board.</p>
+            </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="pins">
+             <div class="pin">
+                <div class="pin-head"></div>
+                <div class="pin-stem"></div>
+                </div>
+              </div>
+            <h1>🧵 Realistic Textures</h1>
+            <div class="description">
+                <h2>Cork board and paper textures that feel tangible</h2>
+                <p>We've carefully crafted textures that mimic real-world materials - from the grain of cork boards to the subtle fibers in paper. These tactile elements create a sense of familiarity and warmth that digital interfaces often lack.</p>
+            </div>
+        </div>
+
+            <div class="card">
+                <div class="pins">
+             <div class="pin">
+                <div class="pin-head"></div>
+                <div class="pin-stem"></div>
+                </div>
+              </div>
+                <h1>✍️ Handwritten Feel</h1>
+                <div class="description">
+                    <h2>Multiple handwriting fonts for personal expression</h2>
+                    <p>With six distinct handwriting styles, users can express their personality through their notes. Each font was selected to convey different emotions and tones, from casual and playful to elegant and refined.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="pins">
+             <div class="pin">
+                <div class="pin-head"></div>
+                <div class="pin-stem"></div>
+                </div>
+              </div>
+                <h1>🎨 Colorful Expression</h1>
+                <div class="description">
+                    <h2>Vibrant color options for different moods</h2>
+                    <p>Color is a powerful tool for expression. Our palette of sticky note colors allows users to visually organize their thoughts or simply choose colors that match their mood or the importance of their message.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="pins">
+             <div class="pin">
+                <div class="pin-head"></div>
+                <div class="pin-stem"></div>
+                </div>
+              </div>
+                <h1>👥 Community Focused</h1>
+                <div class="description">
+                    <h2>Interactive features for sharing and connecting</h2>
+                    <p>At its heart, Public Wall is about connection. Features like likes and comments encourage meaningful interactions, while the shared wall creates a sense of community where ideas can be exchanged freely.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="pins">
+             <div class="pin">
+                <div class="pin-head"></div>
+                <div class="pin-stem"></div>
+                </div>
+              </div>
+                 <h1>🧠 Intuitive Interactions</h1>
+                <div class="description">
+                    <h2>Simple, familiar actions that feel natural</h2>
+                    <p>We've designed interactions that feel natural and intuitive - pinning notes to the wall, writing comments, and giving likes. The interface gets out of the way to let users focus on expression and connection.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="pins">
+             <div class="pin">
+                <div class="pin-head"></div>
+                <div class="pin-stem"></div>
+                </div>
+              </div>
+                <h1>💾 Device-Specific Archives</h1>
+                <div class="description">
+                    <h2>Personal archives while maintaining public moderation</h2>
+                    <p>Our unique approach to archiving balances personal organization with community moderation. When you archive a note, it's removed from the public wall for everyone, but only appears in your device's archive history.</p>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <script>
+        const redirecBtn = document.getElementById("redirect");
+        redirecBtn.addEventListener("click", () => {
+            window.open("index.html", "_self")
+        })
+    </script>
+</body>
+</html>
