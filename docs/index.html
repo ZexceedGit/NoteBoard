@@ -24,6 +24,7 @@
         }
         body {
             overflow-x:hidden;
+            min-width:100vw;
             overflow-y:scroll;
         }
         .navbar {
@@ -34,15 +35,41 @@
             align-items: center;
             background-color: #d4a574;
             border-bottom:4px solid #803805;
+            flex-wrap:wrap;
         }
+       @media(max-width:905px){
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding:10px;
+        justify-content: center;
+        gap:20px;
+        align-items: center;
+    }
+    .navbar .buttons {
+        align-items: center;
+        width: 100%;   
+    }
+    .navbar .buttons button {
+        width: 80%;
+        max-width: 250px;
+        margin-bottom: 10px;
+    }
+}
         .navbar .buttons {
             display:flex;
             gap:10px;
+            justify-content: flex-end;
+            flex-wrap:nowrap;
         }
+        
         .navbar .buttons button {
             width:150px;
             cursor:pointer;
-            padding:18px;
+            max-width:100%;
+            padding:12px 0;
+             flex: 1 1 120px;
+             max-width:200px;
             display:flex;
             justify-content: center;
             border:none;
@@ -70,10 +97,11 @@
         .navbar .buttons button:nth-child(3){
             border:2px solid #bb4d00;
         }
+       
         /* main */
         
         .container {
-            background: url("images/paper2.jpg") center / cover no-repeat;
+            background: url("../images/paper2.jpg") center / cover no-repeat;
         }
         .option-bar {
             height:calc(40vh - 100px);
@@ -83,7 +111,8 @@
         }
         .option-bar .options {
             display:flex;
-            width:500px;
+            max-width:500px;
+            width:100%;
             border-radius:10px;
             gap:10px;
             padding:10px;
@@ -115,18 +144,26 @@
         .main .cards-board {
             padding:15px;
             display:grid;
-            grid-template-columns: repeat(4,1fr);
-            gap:20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            gap:30px;
             row-gap:40px;
-            align-items: start;
+            place-items: center;
+            width:100%;
+            max-width:1200px;
+            margin:0 auto;
+        }
+        .main .cards-board .card {
+            cursor:pointer;
+            z-index:1;
+            height:auto;
+            min-height:250px;
+        }
+        .main .cards-board .card:active {
+            scale:1.05;
+            border:1px solid red;
         }
      
-        .main .cards-board .card.yellow-diagonal,
-        .main .cards-board .card.yellow {
-        min-height: 250px;
-        max-height:300px;
-        height: auto; 
-        }
+       
 
         .main .cards-board .card.green {
             position:relative;
@@ -238,10 +275,10 @@
         .pin-head {
             width: 30px;
             height: 30px;
-            background: #e53935;
             border-radius: 50%;
             position: relative;
             margin: 0 auto;
+            background-color: #e53935;
                 /* box-shadow: inset -4px -6px 0 rgba(0,0,0,0.15); */
         }
 
@@ -326,14 +363,14 @@
             width:3px;
 
         }
-        .createModal .header-container {
+        .createModal .header-container, .archive-modal .header-container {
             display:flex;
              background-color:#fef3c6;
             align-items: center;
              padding:0 20px;
             justify-content: space-between;
         }
-        .createModal .header-container .header{
+        .createModal .header-container .header, .archive-modal .header-container .header{
             height:60px;
             display:flex;
             align-items: center;
@@ -341,11 +378,11 @@
             font-size:1.5rem;
             color:#884619;
         }
-        .createModal .header-container .header i {
+        .createModal .header-container .header i, .archive-modal .header-container .header i {
             margin-right:20px;
             font-size:1.5rem;
         }
-        .createModal .header-container .close {
+        .createModal .header-container .close, .archive-modal .header-container .close {
             font-size:1.4rem;
             cursor:pointer;
         }
@@ -608,12 +645,10 @@
         position: relative;
         margin: 0 auto;
         }
-        .note-toaster {
+        .toaster {
             position:absolute;
             top:-110px;
             right:80px;
-            background-color: #b9f8cf;
-            border:3px solid #05df72;
             border-radius:5px;
             padding:10px;
             width:300px;
@@ -624,23 +659,35 @@
             justify-content: center;
             transform: rotate(2deg);
         }
-        .note-toaster.active {
+        .note-toaster {
+         background-color: #b9f8cf;
+            border:3px solid #05df72;
+        }
+        .archive-toaster{
+           background-color: #f8b9b9;
+           border: 3px solid #df0505;
+        }
+        .archive-toaster i {
+             font-size:30px;
+            color:#df0505;
+        }
+        .toaster.active {
             top:30px;
             right:30px;
         }
-        .note-toaster .top {
+        .toaster .top {
             display:flex;
             align-items: center;
             gap:10px;
         }
-        .note-toaster .top h1 {
+        .toaster .top h1 {
             font-size:1.3rem;
         }
         .note-toaster .top i {
             font-size:30px;
             color:#00c950;
         }
-        .note-toaster p {
+        .toaster p {
            margin-left:40px;
         }
          .navbar .left-side {
@@ -669,7 +716,102 @@
         .navbar .left-side .text p {
             color:#bb4d00;
         }
-   
+        .card .card-clickables .more-option {
+            display:flex;
+            gap:10px;
+        }
+        .card .card-clickables .more-option button {
+            padding:5px;
+            border:none;
+            height:30px;
+            width:30px;
+            border-radius: 50%;
+            background: white;
+            outline:none;
+            cursor: pointer;
+        }
+        .card .card-clickables .more-option button:hover {
+           background-color: #fbc02d;
+           color:white;
+        }
+        .card .card-clickables .more-option button i {
+            font-size:1.3rem;
+        }
+         .archive-modal {
+        display: none; 
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.5); 
+        justify-content: center;
+        align-items: center;
+        }
+        .archive-content {
+        background-color: #fff;
+        border-radius: 8px;
+        width: 750px;
+        max-width: 90%;
+        position: relative;
+        max-height:500px;
+        overflow-y:scroll;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .archive-content .modal-body{
+            padding:20px;
+        }
+        .archive-content .cards {
+            display:flex;
+            flex-wrap: wrap;
+        }
+        .archive-content .cards .card {
+            height:210px;
+            width:300px;
+            border-radius:5px;
+            padding:30px 20px;
+            display: flex;
+            position:relative;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #ffe6ca;
+            opacity:0.6;
+            border:3px solid #ffb868;
+            transition:opacity 300ms ease;
+            cursor: pointer;
+        }
+        .archive-content .cards .card:hover {
+            opacity:1;
+        }
+        .archive-content .cards .card span {
+          position:absolute;
+          top:12px;
+          right:7px;
+          background-color: #f1666d;
+          padding:10px 20px;
+          transform: rotate(10deg);
+          border-radius:5px;
+          color:white;
+          font-weight: bold;
+        }
+        .archive-content .cards .card h1 {
+            font-size:1.4rem;
+        }
+        .archive-content .cards .card .card-clickables {
+            display:flex;
+        }
+        .archive-content .cards .card .card-clickables .btn {
+            display: flex;
+            padding:10px;
+            align-items: center;
+        }
+        .archive-content .cards .card .card-clickables .btn i {
+            margin-right:10px;
+        }
+       
+       
     </style>
 </head>
 <body>
@@ -712,7 +854,7 @@
                 <div class="pin-stem"></div>
                 </div>
               </div>
-                <h1>Typing random thoughts before I forget them, letting my mind spill out everything at once, hoping I can catch the ideas before they disappear into nothing, scattered and fleeting.</h1>
+                <h1>Typing random thoughts before I forget them, letting my mind spill out everything at once, hoping I can catch the ideas before they disappear.</h1>
                 <span>14M AGO</span>
                 <div class="card-clickables">
                     <div class="heart-button btn">
@@ -722,6 +864,10 @@
                     <div class="comment-button btn">
                         <i class='bx bx-message-rounded-dots'></i>
                         <h2>0</h2>
+                    </div>
+                    <div class="more-option">
+                            <button id="archive-card"><i class='bx bx-archive'></i></button>
+                            <button id="report-card"><i class='bx bx-flag' ></i></button>
                     </div>
                 </div>
             </div>
@@ -807,6 +953,7 @@
                         <i class='bx bx-message-rounded-dots'></i>
                         <h2>0</h2>
                     </div>
+
                 </div>
             </div>
 
@@ -818,6 +965,48 @@
                 </div>
               </div>
 <h1>📝 This note doesn’t mean much, and that’s okay — even small thoughts and ideas have value</h1>
+                <span>4D AGO</span>
+                <div class="card-clickables">
+                    <div class="heart-button btn">
+                        <i class='bx bx-heart'></i>
+                        <h2>0</h2>
+                    </div>
+                    <div class="comment-button btn">
+                        <i class='bx bx-message-rounded-dots'></i>
+                        <h2>0</h2>
+                    </div>
+                </div>
+            </div>
+
+                 <div class="card yellow-diagonal">
+            <div class="pins">
+             <div class="pin">
+                <div class="pin-head"></div>
+                <div class="pin-stem"></div>
+                </div>
+              </div>
+                <h1>This note doesn’t mean much, and that’s okay</h1>
+                <span>4D AGO</span>
+                <div class="card-clickables">
+                    <div class="heart-button btn">
+                        <i class='bx bx-heart'></i>
+                        <h2>0</h2>
+                    </div>
+                    <div class="comment-button btn">
+                        <i class='bx bx-message-rounded-dots'></i>
+                        <h2>0</h2>
+                    </div>
+                </div>
+            </div>
+
+                 <div class="card yellow-diagonal">
+            <div class="pins">
+             <div class="pin">
+                <div class="pin-head"></div>
+                <div class="pin-stem"></div>
+                </div>
+              </div>
+                <h1>This note doesn’t mean much, and that’s okay</h1>
                 <span>4D AGO</span>
                 <div class="card-clickables">
                     <div class="heart-button btn">
@@ -955,7 +1144,7 @@
         </div>     
     </div>
           
-    <div class="note-toaster">
+    <div class="note-toaster toaster">
          <div class="pins">
              <div class="pin">
                 <div class="pin-head"></div>
@@ -970,11 +1159,69 @@
         </div>
         <p>Your note has been pinned to the wall.</p>
     </div>
+
+      <div class="archive-toaster toaster">
+         <div class="pins">
+             <div class="pin">
+                <div class="pin-head"></div>
+                <div class="pin-stem"></div>
+                </div>
+              </div>
+        <div class="top">
+            <div class="icon">
+                <i class='bx bx-check-circle'></i>
+            </div>
+            <h1>Note Archived!</h1>
+        </div>
+        <p>Your note has been archived in to the house.</p>
+    </div>
     
+
+    <div class="archive-modal">
+        <div class="archive-content">
+
+            <div class="header-container">
+            <div class="header">
+                <i class='bx bx-archive'></i> Archived Notes
+            </div>
+            <div class="close">
+                <i class='bx bx-x'></i>
+            </div>
+            </div>
+
+            <div class="modal-body">
+                <div class="cards">
+                    <div class="card">
+                        <span>ARCHIVED</span>
+                        <h1>Hi Everyone</h1>
+
+                         <div class="card-clickables">
+                        <div class="heart-button btn">
+                            <i class='bx bx-heart'></i>
+                            <h2>0</h2>
+                        </div>
+                        <div class="comment-button btn">
+                            <i class='bx bx-message-rounded-dots'></i>
+                            <h2>0</h2>
+                        </div>
+                    </div>
+
+                    <div class="date">
+                        <div class="created-date">Created: Thu, Jan 1, 03:07 PM</div>
+                        <div class="archived-date">Archived: Thu, Jan 1, 03:07 PM</div>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div> <!--arhive content last div-->
+    </div>
     
 
 
     <script>
+        let archiveArray = [];
         let closeBtn = document.querySelectorAll(".close");
         let addBtn = document.getElementById("add");
         let modal = document.querySelector(".createModal");
@@ -989,6 +1236,26 @@
         let preview = document.querySelector(".preview");
         let cardsBoard = document.querySelector(".cards-board");
            
+        cardsBoard.addEventListener("click", (e) => {
+    const archiveBtn = e.target.closest(".archive-card");
+    if (!archiveBtn) return;
+
+    const card = archiveBtn.closest(".card");
+    const cardId = card.dataset.id;
+
+    archiveArray.push({
+        id: cardId,
+        html: card.outerHTML,
+        archivedAt: new Date()
+    });
+         document.querySelector(".archive-toaster").classList.add("active");
+         setTimeout(() => {
+                     document.querySelector(".archive-toaster").classList.remove("active");
+         },3000)
+    card.remove();
+    
+});
+
         let selectedColor = "";
         let boxes = document.querySelectorAll(".color-selection .box");
         boxes.forEach(box => {
@@ -1052,6 +1319,7 @@
 
         pinBtn.addEventListener("click", () => {
             let value = textArea.value;
+            let pinHead = document.querySelector(".pin-head");
             let span = document.querySelector(".card span")
             console.log(span)
 
@@ -1076,13 +1344,16 @@
             else {
                 selectedColor = "yellow";
             }
+            const colorpin = ["#e53935", "#fbc02d", "#1e88e5", "#43a047"];
             const rotations = ["-2deg","-1.5deg","-1deg","-0.5deg","0deg","0.5deg","1deg","1.5deg","2deg"];
             let randomRotation = rotations[Math.floor(Math.random() * rotations.length)];
+            let randomColorPin = colorpin[Math.floor(Math.random() * colorpin.length)];
             const now = new Date();
+            const cardID = Date.now()
             setTimeout(() => {
                   modal.style.display = "none";
                   cardsBoard.innerHTML = `
-                    <div class="card ${selectedColor}">
+                    <div class="card ${selectedColor}" data-id="${cardID}">
                <div class="pins">
                  <div class="pin">
                 <div class="pin-head"></div>
@@ -1100,12 +1371,18 @@
                         <i class='bx bx-message-rounded-dots'></i>
                         <h2>0</h2>
                     </div>
+                     <div class="more-option">
+                            <button title="archive" class="archive-card"><i class='bx bx-archive'></i></button>
+                            <button title="report" class="report-card"><i class='bx bx-flag' ></i></button>
+                    </div>
                 </div>
             </div>
                   ` + cardsBoard.innerHTML;
                     pinBtn.innerHTML = "<i class='bx bx-pin'></i> Pin to Wall";
                     pinBtn.disabled = false;
                     const card = cardsBoard.querySelector(".card:last-child");
+                    const lastpin = cardsBoard.querySelector(".pin-head");
+                    lastpin.style.backgroundColor = `${randomColorPin}`;
                     card.style.transform = `rotate(${randomRotation})`;
                     textArea.value = "";
                     document.querySelector(".note-toaster").classList.add("active");
@@ -1171,6 +1448,7 @@
         closeBtn.forEach(btn => {
             btn.addEventListener("click", () => {
                 modal.style.display = "none";
+                 archiveModal.style.display = "none";
             })
         })
         addBtn.addEventListener("click", (e) => {
@@ -1179,6 +1457,32 @@
         document.getElementById("design").addEventListener("click", () => {
             window.open("design.html", "_self");
         })
+        
+        let archiveModal = document.querySelector(".archive-modal");
+        let archiveBtn = document.getElementById("archive");
+        archiveBtn.addEventListener("click", () => {
+            archiveModal.style.display = "flex";
+                renderArchive();
+
+        })
+
+
+  function renderArchive() {
+    const archiveBody = document.querySelector(".modal-body .cards");
+    archiveBody.innerHTML = "";
+
+    if (archiveArray.length === 0) {
+        archiveBody.innerHTML = "<p>No archived notes</p>";
+        return;
+    }
+
+    archiveArray.forEach(item => {
+        archiveBody.innerHTML += item.html;
+    });
+}
+
+
+      
       
       
     </script>
