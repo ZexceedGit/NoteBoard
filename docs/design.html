@@ -82,7 +82,8 @@
         .main .about {
             background-color:  #f6f2eb;
             padding:30px;
-            height:380px;
+            min-height:380px;
+            height:100%;
             border-radius:10px;
             display:flex;
             flex-direction: column;
@@ -106,10 +107,11 @@
         .cards {
             display: grid;
             margin-top:50px;
-            gap:10px;
+            gap:20px;
+            padding:10px;
             place-items: center;
             row-gap:40px;
-            grid-template-columns:repeat(3,1fr);
+            grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
         }
         .cards .card {
             width:380px;
@@ -323,6 +325,4 @@
         })
     </script>
 </body>
-
 </html>
-
